@@ -1,15 +1,20 @@
 # hive-fc-linux
-An experimental V86 (browser) Linux to be stored on the blockchain that uses the hive-file-chunker method to gzip, base64 encode and chunk local files into JSON format to fit in a single block on the Hive blockchain.
+An experimental V86 (browser) Linux to be stored on the blockchain that uses the hive-file-chunker method to
+gzip, base64 encode and chunk local files into JSON format to fit in a single block on the Hive blockchain.
+
+This code was built with the help of a Hive GPT model found here:
+
+https://chat.openai.com/g/g-rf1eXIlTZ-hive
 
 hive-file-chunker is a project that splits files into JSON chunks that will fit within a single Hive blockchain block.
 
 https://github.com/txtatech/hive-file-chunker
 
-qros_dna_squashfs is part of a larger project here:
-
 The browser based Linux distribution and asorted V86 files are from here:
 
 https://github.com/rslay/c_in_browser
+
+qros_dna_squashfs is part of a larger project here:
 
 https://github.com/txtatech/qros-storage/tree/main/qros-storage/qros-dna-main
 
@@ -54,4 +59,3 @@ Here's a more detailed breakdown of the process:
 - **Blockchain Transaction Limits**: Be aware of any limitations or costs associated with updating transactions on the Hive blockchain. Frequent updates or edits might incur additional fees or be subject to rate limits.
 - **Error Handling**: Implement robust error handling for the update process to address any issues with blockchain transactions or data mismatches.
 - **Security and Access Control**: Ensure that the process of updating blockchain data adheres to security best practices to prevent unauthorized access or tampering.
-
