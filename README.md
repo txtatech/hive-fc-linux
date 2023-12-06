@@ -7,6 +7,45 @@ This code was built with the help of a Hive GPT model found here:
 
 https://chat.openai.com/g/g-rf1eXIlTZ-hive
 
+All required files are included in this repo.
+
+The main entry point:
+
+start.html
+
+
+NOTES:
+
+To chunk files located in the 'inputs' folder into JSON use:
+
+hive_file_chunkerV2.py
+
+This is not required but to test the integrity of the chunked files do:
+
+hive_file_dechunkerV2.py
+
+To create an html containing all chunked JSON files:
+
+create_html.sh
+
+The resulting JSON chunks are stored here:
+
+chunky.html
+
+
+The following javascript file is for handling blob urls:
+
+blobHandler.js
+
+
+This is used to handle gzip compression.
+
+pako_inflate.min.js
+
+It can also be found here: It can be found here: https://unpkg.com/pako@0.2.7/dist/pako_inflate.min.js
+
+## NOTES:
+
 hive-file-chunker is a project that splits files into JSON chunks that will fit within a single Hive blockchain block.
 
 https://github.com/txtatech/hive-file-chunker
