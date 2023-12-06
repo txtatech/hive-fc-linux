@@ -42,7 +42,7 @@ This is used to handle gzip compression.
 
 pako_inflate.min.js
 
-It can also be found here: It can be found here: https://unpkg.com/pako@0.2.7/dist/pako_inflate.min.js
+It can be found here: https://unpkg.com/pako@0.2.7/dist/pako_inflate.min.js
 
 ## NOTES:
 
