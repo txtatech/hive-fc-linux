@@ -1,0 +1,1 @@
+sudo bash add_asm_to_freedos_disk.sh
