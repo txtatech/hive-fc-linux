@@ -7,19 +7,19 @@ This code was built with the help of a Hive GPT model found here:
 
 https://chat.openai.com/g/g-rf1eXIlTZ-hive
 
-Hive_FC_Linux <- Boots linux.iso with v86.
+## Hive_FC_Linux <- Boots linux.iso with v86.
 
-Hive-FC-Freedos <- Boots freedos722.img with v86.
+## Hive-FC-Freedos <- Boots freedos722.img with v86.
 
-Hive-FC-Freedos-Tiny <- Boots freedos.boot.disk.160K.img with v86.
+## Hive-FC-Freedos-Tiny <- Boots freedos.boot.disk.160K.img with v86.
 
-Hive_FC_File_Explorer <- A simple blob file explorer for reconstructed files.
+## Hive_FC_File_Explorer <- A simple blob file explorer for reconstructed files.
 
-Hive_FC_Audioplayer <- Plays audio from reconstructed files.
+## Hive_FC_Audioplayer <- Plays audio from reconstructed files.
 
-Hive_FC_Movieplayer <- Plays videos from reconstructed files.
+## Hive_FC_Movieplayer <- Plays videos from reconstructed files.
 
-Hive_FC_OS_TOOLBOX <- Miscellaneous tools and a sandbox for testing.
+## Hive_FC_OS_TOOLBOX <- Miscellaneous tools and a sandbox for testing.
 
 Please note that the main branch contains example outputs from the chunking process.
 
