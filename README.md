@@ -19,6 +19,8 @@ https://chat.openai.com/g/g-rf1eXIlTZ-hive
 
 ### [Hive_FC_Movieplayer](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_Movieplayer) <- Plays videos from reconstructed files.
 
+### [Hive_FC_File_AI_OS](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_File_AI_OS) <- Blob file explorer with advanced JSON and squashfs features.
+
 ### [Hive_FC_OS_TOOLBOX](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_OS_TOOLBOX) <- Miscellaneous tools and a sandbox for testing.
 
 Please note that the main branch contains example outputs from the chunking process.
