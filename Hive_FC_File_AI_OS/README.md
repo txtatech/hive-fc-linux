@@ -4,7 +4,7 @@ quckstart.sh
 
 Or follow the steps below.
 
-
+~~~
 # Start
 python3 ai_dna_main.py
 
@@ -28,9 +28,6 @@ wait
 
 # Start
 bash ./copy_json.sh
-
-# Wait
-wait
 
 # Wait
 wait
@@ -64,9 +61,6 @@ python3 ai_dna_squashfs2.py
 # Wait
 wait
 
-# Wait
-wait
-
 # Start
 python3 ai_dna_chunksquash2.py
 
@@ -85,11 +79,9 @@ chromium %U --user-data-dir="~/chrome-dev-disabled-security" --disable-web-secur
 
 # Start
 echo Done!
+~~~
 
-# Wait
-wait
-
-OLDER VERSION BELOW
+OLDER VERSION OF README BELOW.
 
 All required files are included in this repo.
 
