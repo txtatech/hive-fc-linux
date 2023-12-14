@@ -9,6 +9,8 @@ https://chat.openai.com/g/g-rf1eXIlTZ-hive
 
 ### [Hive_FC_Linux](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_Linux) <- Boots linux.iso with v86.
 
+### [Hive_FC_Tinix](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_Tinix) <- Boots tinix.img with v86.
+
 ### [Hive-FC-Freedos](https://github.com/txtatech/hive-fc-linux/tree/main/Hive-FC-Freedos) <- Boots freedos722.img with v86.
 
 ### [Hive-FC-Freedos-Tiny](https://github.com/txtatech/hive-fc-linux/tree/main/Hive-FC-Freedos-Tiny) <- Boots freedos.boot.disk.160K.img with v86.
