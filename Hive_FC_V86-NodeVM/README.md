@@ -2,11 +2,6 @@ v86-NodeVM is from: https://github.com/superdinmc/v86-NodeVM
 
 All required files are included in this repo.
 
-The main entry point:
-
-start.html
-
-
 NOTES:
 
 To chunk files located in the 'inputs' folder into JSON use:
