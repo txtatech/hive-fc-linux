@@ -3,9 +3,7 @@
 An experimental V86 (browser) Linux to be stored on the blockchain that uses the hive-file-chunker method to
 gzip, base64 encode and chunk local files into JSON format to fit in a single block on the Hive blockchain.
 
-This code was built with the help of a Hive GPT model found here:
-
-https://chat.openai.com/g/g-rf1eXIlTZ-hive
+This code was built with the help of the [Hive GPT model](https://chat.openai.com/g/g-rf1eXIlTZ-hive).
 
 ### [Hive_FC_Linux](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_Linux) <- Boots linux.iso with v86.
 
@@ -14,6 +12,8 @@ https://chat.openai.com/g/g-rf1eXIlTZ-hive
 ### [Hive-FC-Freedos](https://github.com/txtatech/hive-fc-linux/tree/main/Hive-FC-Freedos) <- Boots freedos722.img with v86.
 
 ### [Hive-FC-Freedos-Tiny](https://github.com/txtatech/hive-fc-linux/tree/main/Hive-FC-Freedos-Tiny) <- Boots freedos.boot.disk.160K.img with v86.
+
+### [Hive_FC_V86-NodeVM](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_V86-NodeVM) <- Boots NodeVM.js with node.
 
 ### [Hive_FC_File_Explorer](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_File_Explorer) <- A simple blob file explorer for reconstructed files.
 
