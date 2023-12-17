@@ -15,6 +15,8 @@ This code was built with the help of the [Hive GPT model](https://chat.openai.co
 
 ### [Hive_FC_V86-NodeVM](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_V86-NodeVM) <- Boots NodeVM.js with node.
 
+### [Hive_FC_Sectorforth](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_Sectorforth) <- Boots sectorforth.img with v86.
+
 ### [Hive_FC_File_Explorer](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_File_Explorer) <- A simple blob file explorer for reconstructed files.
 
 ### [Hive_FC_Audioplayer](https://github.com/txtatech/hive-fc-linux/tree/main/Hive_FC_Audioplayer) <- Plays audio from reconstructed files.
