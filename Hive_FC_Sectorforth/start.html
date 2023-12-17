@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Decoder from Chunky HTML</title>
+    <script src="pako_inflate.min.js"></script>
+    <script src="blobHandler.js" type="module"></script>
+    <script>
+    "use strict";
+
+window.startEmulator = function(blobs) {
+    if (typeof V86Starter === "undefined") {
+        console.error("V86Starter is not defined. Ensure libv86.js is loaded.");
+        return;
+    }
+
+    var emulator = new V86Starter({
+        memory_size: 1024 * 1024 * 1024, //Default 32
+        vga_memory_size: 2 * 1024 * 1024, //Default 2
+        screen_container: document.getElementById("screen_container"),
+        bios: {
+            url: blobs["seabios.bin"],
+        },
+        vga_bios: {
+            url: blobs["vgabios.bin"],
+        },
+        fda: { //hda cdrom fda
+            url: blobs["sectorforth.img"], // freedos.boot.disk.160K.img
+        },
+        autostart: true,
+    });
+};
+    </script>
+</head>
+<body>
+    <h1>Decode Data from Chunky HTML</h1>   
+    <input type="file" id="chunkyFileInput" accept=".html">
+    <button id="decodeButton">Decode and Process</button>
+    <div id="start_emulation"></div>
+    <div id="screen_container">
+        <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
+        <canvas style="display: none"></canvas>
+    </div>
+    <script>
+        var blobs = {};
+
+        function isGzipCompressed(data) {
+            // Function to check if data is Gzip compressed
+            return data[0] === 0x1F && data[1] === 0x8B;
+        }
+
+        function base64ToBlob(base64Data) {
+            let standardBase64 = base64Data.replace(/-/g, '+').replace(/_/g, '/');
+            while (standardBase64.length % 4 !== 0) {
+                standardBase64 += '=';
+            }
+            try {
+                const byteCharacters = atob(standardBase64);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+
+                if (isGzipCompressed(byteArray)) {
+                    return new Blob([pako.inflate(byteArray)]);
+                }
+                return new Blob([byteArray]);
+            } catch (e) {
+                console.error("Error in base64 decoding: ", e);
+                return null;
+            }
+        }
+
+        function appendScriptToDocument(blob, fileName) {
+            if (fileName.endsWith('.js') || fileName.endsWith('.wasm')) {
+                var script = document.createElement('script');
+                script.src = URL.createObjectURL(blob);
+                document.head.appendChild(script);
+
+                if (fileName === 'libv86.js') {
+                    script.onload = function() {
+                        if (window.startEmulator) {
+                            window.startEmulator(blobs);
+                        }
+                    };
+                }
+            }
+        }
+
+        function appendFileToDocument(blob, fileName) {
+            var file = new Blob([blob], { type: 'application/octet-stream' });
+            var url = window.URL.createObjectURL(file); // Use "file" instead of "blob"
+            blobs[fileName] = url;
+
+            console.log(`File: ${fileName}, Blob URL: ${url}, Size: ${file.size}, Type: ${file.type}`);
+        }
+
+        function loadEmulator() {
+            // Start the emulator after replacing placeholders
+            if (window.startEmulator) {
+                window.startEmulator(blobs);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch and process chunky.html automatically on page load
+            fetch('chunky.html')
+                .then(response => response.text())
+                .then(content => {
+                    processDataFromChunkyHTML(content);
+                    loadEmulator(); // Load the emulator after processing chunky.html
+                })
+                .catch(error => console.error('Error loading chunky.html:', error));
+        });
+
+        function processDataFromChunkyHTML(htmlContent) {
+            console.log("Processing HTML content");
+
+            const scriptContentMatch = htmlContent.match(/<script>([\s\S]*?)<\/script>/);
+            if (!scriptContentMatch) {
+                console.error("No script with JSON data found");
+                return;
+            }
+
+            const scriptContent = scriptContentMatch[1];
+            const jsonDataMatches = scriptContent.match(/data \+= `([\s\S]*?)`;/g);
+            if (!jsonDataMatches) {
+                console.error("No JSON data found in script");
+                return;
+            }
+
+            let sortedChunks = [];
+            jsonDataMatches.forEach((jsonDataMatch) => {
+                const jsonData = jsonDataMatch.match(/data \+= `([\s\S]*?)`;/)[1].trim();
+                try {
+                    const json = JSON.parse(jsonData);
+                    if (json && json.content && json.content.chunk && typeof json.content.chunk === 'string') {
+                        sortedChunks.push({ file: json.file, chunk: json.content.chunk, number: json.number });
+                    }
+                } catch (e) {
+                    console.error("Error parsing JSON chunk", e);
+                }
+            });
+            sortedChunks.sort((a, b) => a.number - b.number);
+
+            sortedChunks.forEach((chunk) => {
+                const fileIdentifier = chunk.file;
+                if (!blobs[fileIdentifier]) {
+                    blobs[fileIdentifier] = '';
+                }
+                blobs[fileIdentifier] += chunk.chunk;
+            });
+
+            for (const [fileIdentifier, base64Data] of Object.entries(blobs)) {
+                const blob = base64ToBlob(base64Data);
+                console.log(`File: ${fileIdentifier}, Blob:`, blob);
+                blobs[fileIdentifier] = blob;
+
+                // Append the Blob to the document
+                appendFileToDocument(blob, fileIdentifier);
+
+                if (fileIdentifier === "libv86.js") {
+                    appendScriptToDocument(blob, fileIdentifier);
+                }
+            }
+        }
+
+        document.getElementById('decodeButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('chunkyFileInput');
+            if (fileInput.files.length === 0) {
+                alert('Please select the chunky.html file.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                processDataFromChunkyHTML(content);
+            };
+            reader.readAsText(file);
+        });
+    </script>
+    <div id="commands">
+        <h1>Common Commands</h1>
+    <p>
+List of Commands
+    </p>
+    </div>
+</body>
+</html>
+
