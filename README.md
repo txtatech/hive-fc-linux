@@ -77,6 +77,10 @@ The browser based Linux distribution and asorted V86 files are from here:
 
 https://github.com/rslay/c_in_browser
 
+The hive-smart-vm project is a simillar project that focuses on using Node to load V86 linux and can be found here:
+
+https://github.com/txtatech/hive-smart-vm
+
 qros_dna_squashfs is part of a larger project here:
 
 https://github.com/txtatech/qros-storage/tree/main/qros-storage/qros-dna-main
